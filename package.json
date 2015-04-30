@@ -1,6 +1,6 @@
 {
   "name": "node-datetime",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author": "Nobuyori Takahashi",
   "description": "An extended Date object for javascript. It handles offsets by days and hours and formatting etc.",
   "devDependencies": {
