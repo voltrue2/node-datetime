@@ -37,8 +37,9 @@ var WEEKS = {
 
 var ONEDAY = 86400000;
 
-function DateTime(now) {
+function DateTime(now, defaultFormat) {
 	this._now = (now) ? new Date(now) : new Date();
+	this._defaultFormat = defaultFormat || null;
 }
 
 /*
@@ -54,6 +55,11 @@ function DateTime(now) {
 * 
 */
 DateTime.prototype.format = function (format) {
+
+	if (!format && this._defaultFormat) {
+		format = this._defaultFormat;
+	}
+
 	var list = format.split('');
 	var str = '';
 	for (var i = 0, len = list.length; i < len; i++) {
@@ -67,14 +73,9 @@ DateTime.prototype.now = function () {
 };
 
 DateTime.prototype.offsetInDays = function (offset) {
-	// dir: -1 = past, 1 = future
-	var dir = (offset < 0) ? -1 : 1;
-	// if offset is below 0, this will force it to be a positive
-	var days = offset * dir;
-	var offsetted = new Date(this._now);
-	offsetted.setDate(offsetted.getDate() + (dir * days));
-	this._now = offsetted;
-
+	var next = new Date(this._now);
+	next.setDate(next.getDate() + offset);
+	this._now = next;
 };
 
 DateTime.prototype.offsetInHours = function (offset) {

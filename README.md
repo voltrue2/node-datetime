@@ -14,7 +14,7 @@ It handles offsets by days and hours and formatting.
 
 ## API
 
-#### .create(time [*mix])
+#### .create(time [*mix], defaultFormat [*string])
 
 Returns an instance of DateTime object.
 
@@ -33,9 +33,31 @@ var fomratted = dt.format('m/d/Y H:M:S');
 
 ### Methods
 
-#### .format(format [string])
+#### .format(format [*string])
 
 Returns a formatted date time string.
+
+If default format is set and the format string is not passed to `.format()`, default format will be used.
+
+Example With Format:
+
+```javascript
+var datetime = require('node-datetime');
+var dt = datetime.create('2015-04-30 09:52:00');
+var formattedDate = dt.format('m/d/y H:M');
+console.log(formattedDate);
+// 04/30/15 09:52
+```
+
+Example With Default Format:
+
+```javascript
+var datetime = require('node-datetime');
+var dt = datetime.create('2015-04-30 14:30:00', 'Y/m/d H:I');
+var formattedDate = dt.format();
+console.log(formattedDate);
+// 2015/04/30 02:30
+```
 
 #### Formatting rules
 

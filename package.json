@@ -1,48 +1,64 @@
 {
-	"name": "node-datetime",
-	"version": "0.0.1",
-	"author": "Nobuyori Takahashi",
-	"description": "An extended Date object for javascript. It handles offsets by days and hours and formatting etc.",
-	"devDependencies": {
-                "mocha": "1.20.1"
-        },
-	 "jshintConfig": {
-                "node": true,
-                "bitwise": false,
-                "camelcase": true,
-                "curly": true,
-                "eqeqeq": true,
-                "forin": false,
-                "immed": true,
-                "latedef": false,
-                "newcap": true,
-                "noarg": true,
-                "noempty": true,
-                "undef": true,
-                "unused": true,
-                "nonew": true,
-                "white": true,
-                "maxdepth": 5,
-                "quotmark": "single",
-                "globals": {
-                        "mocha": false,
-                        "describe": false,
-                        "it": false,
-                        "before": false,
-                        "beforeEach": false,
-                        "after": false,
-                        "afterEach": false
-                }
-        },
-        "engine": "node >= 0.10.20",
-	"contributors": [],
-        "keywords": [
-        	"date",
-		"datetime",
-		"format",
-		"time",
-		"offset",
-		"range"
-	],
-        "license": "MIT"
+  "name": "node-datetime",
+  "version": "0.0.2",
+  "author": "Nobuyori Takahashi",
+  "description": "An extended Date object for javascript. It handles offsets by days and hours and formatting etc.",
+  "devDependencies": {
+    "mocha": "1.20.1"
+  },
+  "jshintConfig": {
+    "node": true,
+    "bitwise": false,
+    "camelcase": true,
+    "curly": true,
+    "eqeqeq": true,
+    "forin": false,
+    "immed": true,
+    "latedef": false,
+    "newcap": true,
+    "noarg": true,
+    "noempty": true,
+    "undef": true,
+    "unused": true,
+    "nonew": true,
+    "white": true,
+    "maxdepth": 5,
+    "quotmark": "single",
+    "globals": {
+      "mocha": false,
+      "describe": false,
+      "it": false,
+      "before": false,
+      "beforeEach": false,
+      "after": false,
+      "afterEach": false
+    }
+  },
+  "engine": "node >= 0.10.20",
+  "contributors": [],
+  "keywords": [
+    "date",
+    "datetime",
+    "format",
+    "time",
+    "offset",
+    "range"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {},
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/voltrue2/node-datetime.git"
+  },
+  "bugs": {
+    "url": "https://github.com/voltrue2/node-datetime/issues"
+  },
+  "homepage": "https://github.com/voltrue2/node-datetime"
 }

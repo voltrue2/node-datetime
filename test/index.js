@@ -89,4 +89,10 @@ describe('Tests node-datetime', function () {
 		}
 	});
 
+	it('Can use default format', function () {
+		var dateStr = '2015-04-30 11:59:59.999';
+		var dt = datetime.create(dateStr, 'Y-m-d H:M:S.N');
+		assert.equal(dateStr, dt.format());
+	});
+
 });
