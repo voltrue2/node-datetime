@@ -4,7 +4,11 @@
 
 An extended Date object for javascript.
 
-It handles offsets by days and hours and formatting.
+1. Handles offests by days and hours.
+
+2. Built-in formatting function.
+
+3. Time based value calculation.
 
 ## Installation
 
