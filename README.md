@@ -138,3 +138,99 @@ var dates = dt.getDaysInRange(datetime.create('2015-01-10'));
 // dates = [ ... ];
 // dates will contain instances of DateTime object from 2015-01-01 to 2015-01-10
 ````
+
+#### .timedNumber(conf [object])
+
+Returns an instance of TimedNumber that changes its value over time.
+
+conf:
+
+```javascript
+{
+    "max": 10, // maximum value
+    "min": 0, // minimum value
+    "interval": 60000, // value increments/decrements every "interval"
+    "step": 1, // at every interval, the value increments/decrements by "step"
+    "type": "inc", // either "inc" for incrementing type of "dec" for decrementing type
+    init: 10 // initial value to start with
+}
+```
+
+Usage Example:
+
+TimedNumber that recovers its value by 1 every 1 second.
+
+```javascript
+var datetime = require('node-datetime');
+var config = {
+        max: 10,
+        min: 0,
+        interval: 1000,
+        step: 1,
+        type: 'inc',
+        init: 0
+};
+var td = datetime.createTimedNumber(config);
+setTimeout(function () {
+        var value = td.getValue();
+        // value should be 1
+}, 1000);
+```
+
+```javascript
+var datetime = require('node-datetime');
+var config = {
+        max: 10,
+        min: 0,
+        interval: 1000,
+        step: 1,
+        type: 'inc',
+        init: 10
+};
+var td = datetime.createTimedNumber(config);
+td.dec(5);
+setTimeout(function () {
+        var value = td.getValue();
+        // value should be 6
+}, 1000);
+```
+
+### TimedNumber Class
+
+#### .getValue()
+
+Returns the current value.
+
+#### .inc(incrementValue [number])
+
+Increments the current value by incrementValue.
+
+Returns `true` if successful.
+
+#### .dec(decrementValue [number])
+
+Decrements the current value by decrementValue.
+
+Returns `true` if successful.
+
+#### .reset()
+
+Resets the state of `TimedNumber` object to its initial state.
+
+#### .getMaxValue()
+
+Returns maximum value.
+
+#### .getMinValue()
+
+Returns minimum value.
+
+#### .getInterval()
+
+Returns the interval for every update in milliseconds.
+
+#### .getStep()
+
+Returns the value of step for every update.
+
+#### .toObject()
