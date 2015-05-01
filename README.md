@@ -201,6 +201,7 @@ conf:
     "step": 1, // at every interval, the value increments/decrements by "step"
     "type": "inc", // either "inc" for incrementing type of "dec" for decrementing type
     "init": 10 // initial value to start with
+    "lastUpdate": null // an optional time stamp to control the last update state
 }
 ```
 

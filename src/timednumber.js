@@ -13,13 +13,14 @@ conf: {
         step: [number], // update step e.g. is step = 2, it will inc/dec 2 every interval
         type: [string], // inc: increment, dec: decrement
         init: [number], // cannot be greater than max and smaller than min
+	lastUpdate: [*number] // an optional timestamp to conrtol last update state
 }
 */
 function TimedNumber(conf) {
 	this.validate(conf);
 	this.conf = conf;
 	this.current = this.conf.init;
-	this.lastUpdate = Date.now();
+	this.lastUpdate = this.conf.lastUpdate || Date.now();
 }
 
 // public

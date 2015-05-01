@@ -23,6 +23,6 @@ function noSplit(t, ite) {
 	console.log('without split(): ' + (Date.now() - s) + 'ms @ ' + ite);
 }
 
-split(test, 10);
-noSplit(test, 10);
+split(test, 100000);
+noSplit(test, 100000);
 
