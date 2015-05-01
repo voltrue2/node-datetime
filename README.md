@@ -284,4 +284,28 @@ Returns the value of step for every update.
 
 #### .toObject()
 
-Returns a JSON format of `TimedData` object.
+Returns a JSON format of `TimedNumber` object.
+
+You can reconstruct exact same timed number object from this JSON object.
+
+Example:
+
+```javascript
+var datetime = require('node-datetime');
+var config = {
+        max: 10,
+        min: 0,
+        interval: 1000,
+        step: 1,
+        type: 'inc',
+        init: 10
+};
+var timedNumber = datetime.createTimedNumber(conf);
+// do things
+timedNumber.dec(3);
+// store it in database as JSON
+var json = timedNumber.toOjbect();
+// read json back from the database and reconstruct timed number object
+var timedNumber2 = datetime.createTimedNumber(json);
+// timedNumber2 will have the same state as timedNumber
+```

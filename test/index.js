@@ -567,6 +567,25 @@ describe('Tests node-datetime', function () {
                 }, 60);
         });
 
+	it('Can reconstruct timed number with exactly the same sate', function () {
+                var conf = {
+                        init: 10,
+                        max: 10,
+                        min: 0,
+                        interval: 1000,
+                        step: 1,
+                        type: 'inc'
+                };
+		var tn1 = datetime.createTimedNumber(conf);
+		tn1.dec(1);
+		var tn1Source = tn1.toObject();
+		var tn2 = datetime.createTimedNumber(tn1Source);
+		var tn2Source = tn2.toObject();
+		for (var i in tn2Source) {
+			assert.equal(tn1Source[i], tn2Source[i]);
+		}
+	});
+
 	it('Can use "global" offset in days and "global format"', function () {
 		datetime.setOffsetInDays(dayOffset);
 		datetime.setDefaultFormat('Y-m-d H:M:S.N');
