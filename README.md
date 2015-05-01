@@ -157,7 +157,7 @@ Returns a unix timestamp in seconds.
 
 #### .getDatesInRange(date [mix])
 
-Returns an array of DateTime objects within the given range.
+Returns an array of DateTime objects within the given range in days.
 
 **NOTE**: `date` can be either DateTime or Date.
 
@@ -169,6 +169,22 @@ var dt = datetime.create('2015-01-01');
 var dates = dt.getDatesInRange(datetime.create('2015-01-10'));
 // dates = [ ... ];
 // dates will contain instances of DateTime object from 2015-01-01 to 2015-01-10
+````
+
+#### .geHoursInRange(date [mix])
+
+Returns an array of DateTime objects within the given range in hours.
+
+**NOTE**: `date` can be either DateTime or Date.
+
+Example:
+
+```javascript
+var datetime = require('node-datetime');
+var dt = datetime.create('2015-01-01 00:00:00');
+var dates = dt.getDatesInRange(datetime.create('2015-01-02 00:00:00'));
+// dates = [ ... ];
+// dates will contain instances of DateTime object from 2015-01-01 00:00:00 to 2015-01-02 00:00:00
 ````
 
 #### .timedNumber(conf [object])

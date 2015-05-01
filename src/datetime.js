@@ -69,6 +69,7 @@ var MONTHS = {
 };
 
 var ONEDAY = 86400000;
+var ONEHOUR = 3600000;
 
 function DateTime(now, defaultFormat) {
 	this._now = (now) ? new Date(now) : new Date();
@@ -114,6 +115,10 @@ DateTime.prototype.getDatesInRange = function (dateObj) {
 		dateObj = dateObj._now;
 	}
 
+	if (this._now.getTime() >= dateObj.getTime()) {
+		throw new Error('start time cannot be greater than the end time');
+	}
+
 	var list = [];
 	var dir = (dateObj.getTime() >= this._now.getTime()) ? 1 : -1;
 	var diff = dateObj.getTime() - this._now.getTime() * dir;
@@ -125,6 +130,32 @@ DateTime.prototype.getDatesInRange = function (dateObj) {
 		next.offsetInDays(1 * dir);	
 		current = next;
 		diff -= ONEDAY;
+	}
+
+	return list;
+};
+
+DateTime.prototype.getHoursInRange = function (dateObj) {
+
+	if (dateObj instanceof DateTime) {
+		dateObj = dateObj._now;
+	}
+
+	if (this._now.getTime() >= dateObj.getTime()) {
+		throw new Error('start time cannot be greater than the end time');
+	}
+
+	var list = [];
+	var dir = (dateObj.getTime() >= this._now.getTime()) ? 1 : -1;
+	var diff = dateObj.getTime() - this._now.getTime() * dir;
+	var current = new DateTime(this._now);
+	
+	while (diff > 0) {
+		list.push(current);
+		var next = new DateTime(current.now());
+		next.offsetInHours(1 * dir);	
+		current = next;
+		diff -= ONEHOUR;
 	}
 
 	return list;

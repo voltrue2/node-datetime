@@ -101,16 +101,16 @@ describe('Tests node-datetime', function () {
 		}
 	});
 
-	it('Can get instances of DateTime object between 2015-05-12 and 2015-04-12', function () {
-		var start = datetime.create('2015-04-12');
-		var end = datetime.create('2015-05-12');
-		var format = 'Y-m-d H:M:S.N';
-		var list = start.getDatesInRange(end);
-		for (var i = list.length - 1; i >= 0; i--) {
-			var day = list[i];
+	it('can return a list of date time per hour between 2015-04-30 20:40:32.332 and 2015-05-01 17:05:10.223', function () {
+		var start = datetime.create('2015-04-30 20:40:32.332');
+		var end = datetime.create('2015-05-01 17:05:10.223');
+		var format = 'Y/m/d H:M:S.N';
+		var list = start.getHoursInRange(end);
+		for (var i = 0, len = list.length; i < len; i++) {
+			var hour = list[i];
 			var check = datetime.create(start.now());
-			check.offsetInDays(i);
-			assert.equal(day.format(format), check.format(format));
+			check.offsetInHours(i);
+			assert.equal(hour.format(format), check.format(format));
 		}
 	});
 
