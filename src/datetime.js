@@ -75,28 +75,15 @@ function DateTime(now, defaultFormat) {
 	this._defaultFormat = defaultFormat || null;
 }
 
-/*
-* supported formats
-* year: y (last 2 digit), Y (full year)
-* month: m (01..12)
-* day of month: d
-* hours: H (00..23), I (01..12)
-* minutes: M (00..59)
-* seconds: S (00..60)
-* milliseconds: N (000..999)
-* weekday: W (full e.g. Sunday), w (e.g. Sun)
-* 
-*/
 DateTime.prototype.format = function (format) {
 
 	if (!format && this._defaultFormat) {
 		format = this._defaultFormat;
 	}
 
-	var list = format.split('');
 	var str = '';
-	for (var i = 0, len = list.length; i < len; i++) {
-		str += this._convert(list[i]);
+	for (var i = 0, len = format.length; i < len; i++) {
+		str += this._convert(format[i]);
 	}
 	return str;
 };
