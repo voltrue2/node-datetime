@@ -35,7 +35,7 @@ describe('Tests node-datetime', function () {
 	});
 
 	it('Can return y/m/d', function () {
-		var d = d = datetime.create(time);
+		var d = datetime.create(time);
 		var f = d.format('y/m/d');
 		assert.equal(f, '15/01/01');
 	});
