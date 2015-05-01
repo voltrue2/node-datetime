@@ -152,7 +152,7 @@ conf:
     "interval": 60000, // value increments/decrements every "interval"
     "step": 1, // at every interval, the value increments/decrements by "step"
     "type": "inc", // either "inc" for incrementing type of "dec" for decrementing type
-    init: 10 // initial value to start with
+    "init": 10 // initial value to start with
 }
 ```
 
@@ -234,3 +234,5 @@ Returns the interval for every update in milliseconds.
 Returns the value of step for every update.
 
 #### .toObject()
+
+Returns a JSON format of `TimedData` object.
