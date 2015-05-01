@@ -151,7 +151,7 @@ dt.offsetInHours(-1);
 
 Returns a unix timestamp in milliseconds.
 
-#### .getDaysInRange(date [mix])
+#### .getDatesInRange(date [mix])
 
 Returns an array of DateTime objects within the given range.
 
@@ -162,7 +162,7 @@ Example:
 ```javascript
 var datetime = require('node-datetime');
 var dt = datetime.create('2015-01-01');
-var dates = dt.getDaysInRange(datetime.create('2015-01-10'));
+var dates = dt.getDatesInRange(datetime.create('2015-01-10'));
 // dates = [ ... ];
 // dates will contain instances of DateTime object from 2015-01-01 to 2015-01-10
 ````
