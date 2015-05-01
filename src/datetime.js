@@ -92,6 +92,10 @@ DateTime.prototype.now = function () {
 	return this._now.getTime();
 };
 
+DateTime.prototype.epoch = function () {
+	return Math.floor(this._now.getTime() / 1000);
+};
+
 DateTime.prototype.offsetInDays = function (offset) {
 	var next = new Date(this._now);
 	next.setDate(next.getDate() + offset);

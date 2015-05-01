@@ -151,6 +151,10 @@ dt.offsetInHours(-1);
 
 Returns a unix timestamp in milliseconds.
 
+#### .epoch()
+
+Returns a unix timestamp in seconds.
+
 #### .getDatesInRange(date [mix])
 
 Returns an array of DateTime objects within the given range.

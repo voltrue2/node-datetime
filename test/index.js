@@ -21,6 +21,12 @@ describe('Tests node-datetime', function () {
 		assert.equal(then, d.now());
 	});
 
+	it('Can return timestamp in seconds', function () {
+		var then = Math.floor(new Date(time).getTime() / 1000);
+		var d = datetime.create(time);
+		assert.equal(then, d.epoch());
+	});
+
 	it('Can format Y-m-d H:M:S.N', function () {
 		var d = datetime.create(time);
 		var f = d.format('Y-m-d H:M:S.N');
