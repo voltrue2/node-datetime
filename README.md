@@ -66,6 +66,8 @@ console.log(formattedDate);
 |y|The last 2 digit of the year|
 |Y|Year|
 |m|Month with leading 0|
+|n|Shortened name of a month|
+|f|Full name of a month|
 |d|Date with leading 0|
 |H|Hours with leading 0 in 24 hours format|
 |I|Hours with leading 0 in 12 hours format|

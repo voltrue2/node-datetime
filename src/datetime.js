@@ -4,9 +4,11 @@ var FORMATS = {
 	y: getYear,
 	Y: getFullYear,
 	m: getMonth,
+	n: getMonthName,
+	f: getMonthFullName,
 	d: getDay,
 	H: getMilitaryHours,
-	h: getHours,
+	I: getHours,
 	M: getMinutes,
 	S: getSeconds,
 	N: getMillisec,
@@ -32,6 +34,37 @@ var WEEKS = {
 		'Thursday',
 		'Friday',
 		'Saturday'
+	]
+};
+
+var MONTHS = {
+	ABB: [
+		'Jan',
+		'Feb',
+		'Mar',
+		'Apr',
+		'May',
+		'Jun',
+		'Jul',
+		'Aug',
+		'Sep',
+		'Oct',
+		'Nov',
+		'Dec'
+	],
+	FULL: [
+		'January',
+		'Feburary',
+		'March',
+		'April',
+		'May',
+		'June',
+		'July',
+		'August',
+		'September',
+		'October',
+		'November',
+		'December'
 	]
 };
 
@@ -128,6 +161,14 @@ function getFullYear(d) {
 
 function getMonth(d) {
 	return pad(d.getMonth() + 1);
+}
+
+function getMonthName(d) {
+	return MONTHS.ABB[d.getMonth()];
+}
+
+function getMonthFullName(d) {
+	return MONTHS.FULL[d.getMonth()];
 }
 
 function getDay(d) {

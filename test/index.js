@@ -27,6 +27,13 @@ describe('Tests node-datetime', function () {
 		assert.equal(f, time);
 	});
 
+	it('Can format Y-m-d I:M:S.N', function () {
+		var str = '2015-05-01 04:30:00.666';
+		var d = datetime.create(str);
+		var f = d.format('Y-m-d I:M:S.N');
+		assert.equal(str, f);
+	});
+
 	it('Can return y/m/d', function () {
 		var d = d = datetime.create(time);
 		var f = d.format('y/m/d');
@@ -37,6 +44,18 @@ describe('Tests node-datetime', function () {
 		var d = datetime.create(time);
 		var f = d.format('w W');
 		assert.equal('Thu Thursday', f);
+	});
+
+	it('Can return a short name of a month', function () {
+		var d = datetime.create(time);
+		var m = d.format('n');
+		assert.equal('Jan', m);	
+	});
+
+	it('Can return a full name of a month', function () {
+		var d = datetime.create(time);
+		var m = d.format('f');
+		assert.equal('January', m);	
 	});
 
 	it('Can offset ' + dayOffset + ' days in the past', function () {
