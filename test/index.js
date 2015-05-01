@@ -1,8 +1,8 @@
 var datetime = require('../');
 var assert = require('assert');
 var time = '2015-01-01 00:00:00.000';
-var past = '2014-11-2 00:00:00.000';
-var future = '2015-03-01 00:00:00.000';
+var past = '2014-11-02 00:00:00.000';
+var future = '2015-03-02 00:00:00.000';
 var dayOffset = 60;
 var hourOffset = 25;
 var hourPast = '2014-12-30 23:00:00.000';
@@ -61,13 +61,13 @@ describe('Tests node-datetime', function () {
 	it('Can offset ' + dayOffset + ' days in the past', function () {
 		var d = datetime.create(time);
 		d.offsetInDays(-1 * dayOffset);
-		assert(past, d.format('Y-m-d H:M:S.N'));
+		assert.equal(past, d.format('Y-m-d H:M:S.N'));
 	});
 
 	it('Can offset ' + dayOffset + ' days in the future', function () {
 		var d = datetime.create(time);
 		d.offsetInDays(dayOffset);
-		assert(future, d.format('Y-m-d H:M:S.N'));
+		assert.equal(future, d.format('Y-m-d H:M:S.N'));
 	});
 
 	it('Can offset ' + hourOffset + ' hours in the past', function () {
@@ -560,5 +560,15 @@ describe('Tests node-datetime', function () {
                         done();
                 }, 60);
         });
+
+	it('Can use "global" offset in days and "global format"', function () {
+		datetime.setOffsetInDays(dayOffset);
+		datetime.setDefaultFormat('Y-m-d H:M:S.N');
+		var dt1 = datetime.create(time);
+		var dt2 = datetime.create(time);
+		assert.equal(dt1.format(), dt2.format());
+		assert.equal(dt1.format(), future);
+		assert.equal(dt2.format(), future);
+	});
 
 });

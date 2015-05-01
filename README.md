@@ -33,6 +33,30 @@ var fomratted = dt.format('m/d/Y H:M:S');
 // e.g. 04/28/2015 21:13:09
 ```
 
+#### .setOffsetInDays(offsetDays [number])
+
+Sets a shared offset in days.
+
+If this is set, all instances of DateTime object will have the given offset in days.
+
+This can be individually overridden.
+
+#### .setOffsetInHourss(offsetHours [number])
+
+Sets a shared offset in hours.
+
+If this is set, all instances of DateTime object will have the given offset in hours.
+
+This can be individually overridden.
+
+#### .setDefaultFormat(defaultFormat [string])
+
+Sets a shared default format.
+
+If this is set, all instances of DateTime object will have the given format as default.
+
+This can be individually overridden.
+
 ## DateTime Object
 
 ### Methods
