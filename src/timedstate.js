@@ -28,7 +28,7 @@ TimedState.prototype.getState = function () {
 
 	if (nextPos >= this.length) {
 		if (this.conf.loop) {
-			nextPos = (steps + this.current) - (this.length - 1);	
+			nextPos = (steps + this.current) - (this.length);	
 		} else {
 			// we don't loop and stop at the end of the state
 			nextPos = this.length - 1;

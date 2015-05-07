@@ -612,7 +612,7 @@ describe('Tests node-datetime', function () {
 		assert(ts);
 	});
 
-	it('Moves forward by 2 states after 200 milliseconds w/ itnerval 100 miliseconds configuration', function () {
+	it('Moves forward by 2 states after 200 milliseconds w/ itnerval 100 miliseconds configuration', function (done) {
 		var conf = {
 			states: [
 				'a',
@@ -629,10 +629,11 @@ describe('Tests node-datetime', function () {
 		setTimeout(function () {
 			var state = ts.getState();
 			assert.equal('c', state);
+			done();
 		}, 200);
 	});
 
-	it('Stays at the last state after 500 milliseconds w/ itnerval 100 miliseconds configuration', function () {
+	it('Stays at the last state after 500 milliseconds w/ itnerval 100 miliseconds configuration', function (done) {
 		var conf = {
 			states: [
 				'a',
@@ -649,10 +650,11 @@ describe('Tests node-datetime', function () {
 		setTimeout(function () {
 			var state = ts.getState();
 			assert.equal('d', state);
+			done();
 		}, 500);
 	});
 
-	it('Loops back to 1st state after 400 milliseconds w/ itnerval 100 miliseconds configuration', function () {
+	it('Loops back to 1st state after 400 milliseconds w/ itnerval 100 miliseconds configuration', function (done) {
 		var conf = {
 			states: [
 				'a',
@@ -669,10 +671,11 @@ describe('Tests node-datetime', function () {
 		setTimeout(function () {
 			var state = ts.getState();
 			assert.equal('a', state);
-		}, 500);
+			done();
+		}, 400);
 	});
 
-	it('Loops to 2nd state after 500 milliseconds w/ itnerval 100 miliseconds configuration', function () {
+	it('Loops to 2nd state after 500 milliseconds w/ itnerval 100 miliseconds configuration', function (done) {
 		var conf = {
 			states: [
 				'a',
@@ -689,6 +692,7 @@ describe('Tests node-datetime', function () {
 		setTimeout(function () {
 			var state = ts.getState();
 			assert.equal('b', state);
+			done();
 		}, 500);
 	});
 
