@@ -47,12 +47,10 @@ TimedNumber.prototype.inc = function (value) {
 		this.lastUpdate = Date.now();
 	}
 
+	// if type is inc, increasing means recovering
 	this.current += value;
 
-	if (this.conf.type === INC) {
-		// if type is inc, increasing means recovering
-		this.lastUpdate = Date.now();
-	}
+	this.lastUpdate = Date.now();
 
 	return true;
 };
@@ -71,12 +69,10 @@ TimedNumber.prototype.dec = function (value) {
 		this.lastUpdate = Date.now();
 	}
 	
+	// if type is dec, decreasing means recovering
 	this.current -= value;
 
-	if (this.conf.type === DEC) {
-		// if type is dec, decreasing means recovering
-		this.lastUpdate = Date.now();
-	}
+	this.lastUpdate = Date.now();
 
 	return true;
 };

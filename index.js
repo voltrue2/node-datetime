@@ -2,6 +2,7 @@
 
 var DateTime = require('./src/datetime');
 var TimedNumber = require('./src/timednumber');
+var TimedState = require('./src/timedstate');
 
 // global offsets for datetime
 var offsets = {
@@ -55,4 +56,8 @@ exports.create = function (now, defaultFormat) {
 
 exports.createTimedNumber = function (conf) {
 	return new TimedNumber(conf);
+};
+
+exports.createTimedState = function (conf) {
+	return new TimedState(conf);
 };

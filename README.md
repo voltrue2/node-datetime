@@ -187,7 +187,7 @@ var dates = dt.getDatesInRange(datetime.create('2015-01-02 00:00:00'));
 // dates will contain instances of DateTime object from 2015-01-01 00:00:00 to 2015-01-02 00:00:00
 ````
 
-#### .timedNumber(conf [object])
+#### .createTimedNumber(conf [object])
 
 Returns an instance of TimedNumber that changes its value over time.
 
@@ -309,3 +309,65 @@ var json = timedNumber.toOjbect();
 var timedNumber2 = datetime.createTimedNumber(json);
 // timedNumber2 will have the same state as timedNumber
 ```
+
+### .createTimedState(conf)
+
+Returns an instance of TimedState object that changes its state over time.
+
+conf:
+
+```
+{
+	states: [ 'A', 'B', 'C' ... ] // an array of states to represent the order of states
+	interval: 1000 // interval in milliseconds for the state to change
+	init: 0 // initial position of the states array
+	loop: false // if true, the states will loop  
+}
+``` 
+
+Example:
+
+```javascript
+var datetime = require('node-datetime');
+var conf = {
+	states: [ 'one', 'two', 'three' ],
+	interval: 1000,
+	init: 0,
+	loop: false
+};
+// create the TimedState object  that changes its state every 1 second from 'one' and it stops at 'three'
+var ts = datetime.createTimedState(conf);
+```
+
+### TimedState Class
+
+#### .getState()
+
+Returns the current state.
+
+#### .forward(position [*number])
+
+Forces the state to move forward by the given number. If no position is given, it will move forward by one.
+
+#### .backward(position [*number])
+
+Forces the state to move backward by the given number, If no position is given, it will move backward by one.
+
+#### .getStates()
+
+Returns the state array.
+
+#### .getInterval()
+
+Returns the interval in milliseconds
+
+#### .reset()
+
+Resets the state to its initial state.
+
+#### .toObject()
+
+Returns a JSON format of `TimedState` object.
+
+You can reconstruct exact same timed number object from this JSON object.
+
