@@ -16,6 +16,55 @@ An extended Date object for javascript.
 
 `npm node-datetime`
 
+# Backward Compatibilty Break Warning
+
+From version `1.0.0`, certain APIs have changed their behavior.
+
+### .now()
+
+This API used to return a fixed timestamp in milliseconds meaning that it was returning the timestamp of the instance of `datetime`.
+
+Now `.now()` returns a calculated current timestamp in milliseconds with time offset if given.
+
+**Example**:
+
+You could get current time of the past, for exmaple.
+
+```javascript
+var datetime = require('node-datetime');
+var past = '2015-01-01 00:00:00';
+var pastDateTime = datetime.create(past);
+// get the current timestamp of the past
+setTimeout(function () {
+	var pastNow = pastDateTime.now();
+	// this would be 1420038010000
+	console.log(pastNow);
+	// this would be 2015-01-01 00:00:10
+	console.log(new Date(1420038010000));
+}, 1000);
+```
+
+### .getTime()
+
+This API is the same as former `.now()`. It returns the timestamp of `datetime` object.
+
+**Example**:
+
+
+```javascript
+var datetime = require('node-datetime');
+var past = '2015-01-01 00:00:00';
+var pastDateTime = datetime.create(past);
+// get the current timestamp of the past
+setTimeout(function () {
+        var pastTime = pastDateTime.getTime();
+        // this would be 1420038000000
+        console.log(pastNow);
+        // this would be 2015-01-01 00:00:00
+        console.log(new Date(1420038000000));
+}, 1000);
+```
+
 ## API
 
 #### .create(time [*mix], defaultFormat [*string])
