@@ -18,13 +18,23 @@ describe('Tests node-datetime', function () {
 	it('Can return timestamp in milliseconds', function () {
 		var then = new Date(time).getTime();
 		var d = datetime.create(time);
-		assert.equal(then, d.now());
+		assert.equal(then, d.getTime());
 	});
 
 	it('Can return timestamp in seconds', function () {
 		var then = Math.floor(new Date(time).getTime() / 1000);
 		var d = datetime.create(time);
 		assert.equal(then, d.epoch());
+	});
+
+	it('Can return now in milliseconds', function (done) {
+		var then = new Date(time).getTime();
+		var d = datetime.create(time);
+		setTimeout(function () {
+			var now = d.now();
+			assert.notEqual(then, now);
+			done();
+		}, 1000);
 	});
 
 	it('Can format Y-m-d H:M:S.N', function () {
@@ -95,7 +105,7 @@ describe('Tests node-datetime', function () {
 		var list = start.getDatesInRange(end);
 		for (var i = 0, len = list.length; i < len; i++) {
 			var day = list[i];
-			var check = datetime.create(start.now());
+			var check = datetime.create(start.getTime());
 			check.offsetInDays(i);
 			assert.equal(day.format(format), check.format(format));
 		}
@@ -108,7 +118,7 @@ describe('Tests node-datetime', function () {
 		var list = start.getHoursInRange(end);
 		for (var i = 0, len = list.length; i < len; i++) {
 			var hour = list[i];
-			var check = datetime.create(start.now());
+			var check = datetime.create(start.getTime());
 			check.offsetInHours(i);
 			assert.equal(hour.format(format), check.format(format));
 		}

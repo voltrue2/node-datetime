@@ -72,7 +72,9 @@ var ONEDAY = 86400000;
 var ONEHOUR = 3600000;
 
 function DateTime(now, defaultFormat) {
+	this._created = Date.now();
 	this._now = (now) ? new Date(now) : new Date();
+	this._delta = this._created - this._now.getTime();
 	this._defaultFormat = defaultFormat || null;
 }
 
@@ -90,23 +92,29 @@ DateTime.prototype.format = function (format) {
 };
 
 DateTime.prototype.now = function () {
-	return this._now.getTime();
+	return Date.now() - this._delta;
 };
 
 DateTime.prototype.epoch = function () {
-	return Math.floor(this._now.getTime() / 1000);
+	return Math.floor(this.getTime() / 1000);
+};
+
+DateTime.prototype.getTime = function () {
+	return this._now.getTime();
 };
 
 DateTime.prototype.offsetInDays = function (offset) {
 	var next = new Date(this._now);
 	next.setDate(next.getDate() + offset);
 	this._now = next;
+	this._updateDelta();
 };
 
 DateTime.prototype.offsetInHours = function (offset) {
 	var next = new Date(this._now);
 	next.setHours(next.getHours() + offset);
 	this._now = next;
+	this._updateDelta();
 };
 
 DateTime.prototype.getDatesInRange = function (dateObj) {
@@ -115,18 +123,18 @@ DateTime.prototype.getDatesInRange = function (dateObj) {
 		dateObj = dateObj._now;
 	}
 
-	if (this._now.getTime() >= dateObj.getTime()) {
+	if (this.getTime() >= dateObj.getTime()) {
 		throw new Error('start time cannot be greater than the end time');
 	}
 
 	var list = [];
-	var dir = (dateObj.getTime() >= this._now.getTime()) ? 1 : -1;
-	var diff = dateObj.getTime() - this._now.getTime() * dir;
+	var dir = (dateObj.getTime() >= this.getTime()) ? 1 : -1;
+	var diff = dateObj.getTime() - this.getTime() * dir;
 	var current = new DateTime(this._now);
 	
 	while (diff > 0) {
 		list.push(current);
-		var next = new DateTime(current.now());
+		var next = new DateTime(current.getTime());
 		next.offsetInDays(1 * dir);	
 		current = next;
 		diff -= ONEDAY;
@@ -152,7 +160,7 @@ DateTime.prototype.getHoursInRange = function (dateObj) {
 	
 	while (diff > 0) {
 		list.push(current);
-		var next = new DateTime(current.now());
+		var next = new DateTime(current.getTime());
 		next.offsetInHours(1 * dir);	
 		current = next;
 		diff -= ONEHOUR;
@@ -170,6 +178,10 @@ DateTime.prototype._convert = function (formatFragment) {
 	
 	// no converter 
 	return formatFragment;
+};
+
+DateTime.prototype._updateDelta = function () {
+	this._delta = this._created - this._now.getTime();
 };
 
 function getYear(d) {

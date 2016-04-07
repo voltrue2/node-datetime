@@ -151,9 +151,15 @@ dt.offsetInHours(-1);
 
 Returns a unix timestamp in milliseconds.
 
+**NOTE:** The method automatically calculates the offset time.
+
+#### .getTime()
+
+Returns a fixed unix timestamp in milliseconds.
+
 #### .epoch()
 
-Returns a unix timestamp in seconds.
+Returns a fixed unix timestamp in seconds.
 
 #### .getDatesInRange(date [mix])
 
