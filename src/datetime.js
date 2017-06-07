@@ -78,6 +78,42 @@ function DateTime(now, defaultFormat) {
 	this._defaultFormat = defaultFormat || null;
 }
 
+DateTime.setWeekNames = function (names) {
+	for (var i = 0, len = names.length; i < len; i++) {
+		if (!names[i]) {
+			continue;
+		}
+		WEEKS.FULL[i] = names[i];
+	}
+};
+
+DateTime.setShortWeekNames = function (names) {
+	for (var i = 0, len = names.length; i < len; i++) {
+		if (!names[i]) {
+			continue;
+		}
+		WEEKS.ABB[i] = names[i];
+	}
+};
+
+DateTime.setMonthNames = function (names) {
+	for (var i = 0, len = names.length; i < len; i++) {
+		if (!names[i]) {
+			continue;
+		}
+		MONTHS.FULL[i] = names[i];
+	}
+};
+
+DateTime.setShortMonthNames = function (names) {
+	for (var i = 0, len = names.length; i < len; i++) {
+		if (!names[i]) {
+			continue;
+		}
+		MONTHS.ABB[i] = names[i];
+	}
+};
+
 DateTime.prototype.format = function (format) {
 
 	if (!format && this._defaultFormat) {

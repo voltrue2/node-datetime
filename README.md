@@ -44,6 +44,60 @@ setTimeout(function () {
 }, 1000);
 ```
 
+### .setWeekNames(listOfWeekNames [array])
+
+Replaces the default week names with custom names.
+
+**NOTE** you may have nulls in your custom week name array to keep some of the default names:
+
+```
+datetime.setWeekNames([
+	'My Custom Monday',
+	// keep the default name
+	null,
+	...
+]);
+```
+
+### .setShortWeekNames(listOfShortWeekNames [array])
+
+**NOTE** you may have nulls in your custom name array to keep some of the default names:
+
+```
+datetime.setShortWeekNames([
+	'My Custom Name',
+	// keep the default name
+	null,
+	...
+]);
+```
+
+### .setMonthNames(listOfMonthNames [array])
+
+**NOTE** you may have nulls in your custom name array to keep some of the default names:
+
+```
+datetime.setMonthNames([
+	'My Custom Name',
+	// keep the default name
+	null,
+	...
+]);
+```
+
+### .setShortMonthNames(listOfShortMonthNames [array])
+
+**NOTE** you may have nulls in your custom name array to keep some of the default names:
+
+```
+datetime.setShortMonthNames([
+	'My Custom Name',
+	// keep the default name
+	null,
+	...
+]);
+```
+
 ### .getTime()
 
 This API is the same as former `.now()`. It returns the timestamp of `datetime` object.
@@ -78,7 +132,7 @@ Example:
 ```javascript
 var datetime = require('node-datetime');
 var dt = datetime.create();
-var fomratted = dt.format('m/d/Y H:M:S');
+var formatted = dt.format('m/d/Y H:M:S');
 // e.g. 04/28/2015 21:13:09
 ```
 
