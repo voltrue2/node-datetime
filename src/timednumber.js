@@ -3,8 +3,6 @@
 var INC = 'inc';
 var DEC = 'dec';
 
-module.exports = TimedNumber;
-
 /*
 conf: {
         max: [number],
@@ -178,3 +176,6 @@ TimedNumber.prototype.calculateCurrentValueForDec = function () {
 	}
 	return this.current;
 };
+
+module.exports = TimedNumber;
+

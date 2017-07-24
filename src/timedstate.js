@@ -1,7 +1,5 @@
 'use strict';
 
-module.exports = TimedState;
-
 /*
 conf: {
 	states: [array], // an array of states
@@ -136,3 +134,6 @@ TimedState.prototype.validate = function (conf) {
 		throw new Error('invalid init: ' + conf.init);
 	}
 };
+
+module.exports = TimedState;
+

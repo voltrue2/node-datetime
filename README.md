@@ -12,9 +12,27 @@ An extended Date object for javascript.
 
 ## Installation
 
-#### Installation via npm
+# Installation via npm
 
 `npm node-datetime`
+
+# Use node-datetime in browser
+
+In order to use `node-datetime` in browser, you will need to load the script as shown below:
+
+The browser script file is located at: `node-datetime/release/browser/node_datetime.js`.
+
+## Add the script to your HTML
+
+```html
+<script type="text/javascript" src="node_datetime.js"></script>
+```
+
+## window.DateTime
+
+When you add the script to your HTML page correctly, `window.DateTime` object will be accessible as a global object.
+
+***
 
 # Backward Compatibilty Break Warning
 
@@ -43,6 +61,29 @@ setTimeout(function () {
 	console.log(new Date(1420038010000));
 }, 1000);
 ```
+
+### .getTime()
+
+This API is the same as former `.now()`. It returns the timestamp of `datetime` object.
+
+**Example**:
+
+
+```javascript
+var datetime = require('node-datetime');
+var past = '2015-01-01 00:00:00';
+var pastDateTime = datetime.create(past);
+// get the current timestamp of the past
+setTimeout(function () {
+        var pastTime = pastDateTime.getTime();
+        // this would be 1420038000000
+        console.log(pastNow);
+        // this would be 2015-01-01 00:00:00
+        console.log(new Date(1420038000000));
+}, 1000);
+```
+
+## API
 
 ### .setWeekNames(listOfWeekNames [array])
 
@@ -97,29 +138,6 @@ datetime.setShortMonthNames([
 	...
 ]);
 ```
-
-### .getTime()
-
-This API is the same as former `.now()`. It returns the timestamp of `datetime` object.
-
-**Example**:
-
-
-```javascript
-var datetime = require('node-datetime');
-var past = '2015-01-01 00:00:00';
-var pastDateTime = datetime.create(past);
-// get the current timestamp of the past
-setTimeout(function () {
-        var pastTime = pastDateTime.getTime();
-        // this would be 1420038000000
-        console.log(pastNow);
-        // this would be 2015-01-01 00:00:00
-        console.log(new Date(1420038000000));
-}, 1000);
-```
-
-## API
 
 #### .create(time [*mix], defaultFormat [*string])
 
