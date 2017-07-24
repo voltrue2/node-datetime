@@ -24,8 +24,10 @@ The browser script file is located at: `node-datetime/release/browser/node_datet
 
 ## Add the script to your HTML
 
+The "src" path must be according to your server setup.
+
 ```html
-<script type="text/javascript" src="node_datetime.js"></script>
+<script type="text/javascript" src="./node_datetime.js"></script>
 ```
 
 ## window.DateTime
