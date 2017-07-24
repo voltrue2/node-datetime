@@ -34,6 +34,8 @@ The "src" path must be according to your server setup.
 
 When you add the script to your HTML page correctly, `window.DateTime` object will be accessible as a global object.
 
+The object is the equivalent of `var datetime = require('node-datetime');` in node.js version.
+
 ***
 
 # Backward Compatibilty Break Warning
