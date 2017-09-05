@@ -35,6 +35,26 @@ exports.setDefaultFormat = function (format) {
 	globalDefaultFormat = format;
 };
 
+exports.setWeekNames = function (list) {
+	DateTime.setWeekNames(list);
+};
+
+exports.setShortWeekNames = function (list) {
+	DateTime.setShortWeekNames(list);
+};
+
+exports.setMonthName = function (list) {
+	DateTime.setMonthName(list);
+};
+
+exports.setShortMonthNames = function (list) {
+	DateTime.setShortMonthName(list);
+};
+
+exports.setPeriod = function (list) {
+	DateTime.setPeriod(list);
+};
+
 exports.create = function (now, defaultFormat) {
 
 	if (!defaultFormat && globalDefaultFormat) {

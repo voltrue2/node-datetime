@@ -13,7 +13,13 @@ var FORMATS = {
 	S: getSeconds,
 	N: getMillisec,
 	w: getWeekday,
-	W: getFullWeekday
+	W: getFullWeekday,
+	p: getPeriod
+};
+
+var PERIOD = {
+	AM: 'AM',
+	PM: 'PM'
 };
 
 var WEEKS = {
@@ -93,6 +99,18 @@ DateTime.setShortWeekNames = function (names) {
 			continue;
 		}
 		WEEKS.ABB[i] = names[i];
+	}
+};
+
+/**
+periods [ 'AM', 'PM' ]
+*/
+DateTime.setPeriod = function (period) {
+	if (period[0]) {
+		PERIOD.AM = period[0];
+	}
+	if (period[1]) {
+		PERIOD.PM = period[1];
 	}
 };
 
@@ -273,6 +291,14 @@ function getWeekday(d) {
 
 function getFullWeekday(d) {
 	return WEEKS.FULL[d.getDay()];
+}
+
+function getPeriod(d) {
+	var hours = d.getHours();
+	if (hours <= 12) {
+		return PERIOD.AM;
+	}
+	return PERIOD.PM;
 }
 
 function pad(n) {

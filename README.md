@@ -89,6 +89,14 @@ setTimeout(function () {
 
 ## API
 
+### .setPeriod(periodNames [array])
+
+Replaces the default period names (AM and PM).
+
+```
+datetime.setPeriod([ 'Ante Meridiem', 'Post Meridiem' ]);
+```
+
 ### .setWeekNames(listOfWeekNames [array])
 
 Replaces the default week names with custom names.
@@ -227,6 +235,7 @@ console.log(formattedDate);
 |M|Minutes with leading 0|
 |S|Seconds with leading 0|
 |N|Milliseconds with leading 0|
+|p|Period (AM or PM)|
 
 #### .offsetInDays(offset [number])
 

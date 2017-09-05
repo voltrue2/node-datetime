@@ -50,6 +50,14 @@ describe('Tests node-datetime', function () {
 		assert.equal(str, f);
 	});
 
+	it('Can return w/ I:M:S p', function () {
+		datetime.setPeriod([ '午前', '午後' ]);		
+		var str = '2017-09-05 14:21:00';
+		var d = datetime.create(str);
+		var f = d.format('I:M:S p');
+		assert.equal('02:21:00 午後', f);
+	});
+
 	it('Can return y/m/d', function () {
 		var d = datetime.create(time);
 		var f = d.format('y/m/d');
