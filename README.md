@@ -236,6 +236,8 @@ console.log(formattedDate);
 |S|Seconds with leading 0|
 |N|Milliseconds with leading 0|
 |p|Period (AM or PM)|
+|w|Shortened name of the week day|
+|W|Full name of the week day|
 
 #### .offsetInDays(offset [number])
 
