@@ -60,7 +60,7 @@ var MONTHS = {
 	],
 	FULL: [
 		'January',
-		'Feburary',
+		'February',
 		'March',
 		'April',
 		'May',
