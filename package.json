@@ -1,8 +1,8 @@
 {
   "name": "node-datetime",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "author": "Nobuyori Takahashi",
-  "description": "An extended Date object for javascript. 1. Handles offests by days and hours. 2. Built-in formatting function. 3. Time based value calculation.",
+  "description": "Extended Date object for javascript. 1. Handles offests by days and hours. 2. Built-in formatting function. 3. Time based value calculation.",
   "devDependencies": {
     "mocha": "1.20.1"
   },

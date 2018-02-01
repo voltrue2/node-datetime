@@ -68,7 +68,7 @@ exports.create = function (now, defaultFormat) {
 	}
 
 	if (offsets.hours !== 0) {
-		d.offsetsInHours(offsets.hours);
+		d.offsetInHours(offsets.hours);
 	}
 
 	return d;
