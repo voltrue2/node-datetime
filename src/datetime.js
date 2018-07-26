@@ -295,7 +295,7 @@ function getFullWeekday(d) {
 
 function getPeriod(d) {
 	var hours = d.getHours();
-	if (hours <= 12) {
+	if (hours < 12) {
 		return PERIOD.AM;
 	}
 	return PERIOD.PM;
