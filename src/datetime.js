@@ -269,7 +269,7 @@ function getMilitaryHours(d) {
 
 function getHours(d) {
 	var h = d.getHours();
-	var hours = (h >= 12) ? h - 12 : h; 
+	var hours = (h > 12) ? h - 12 : h; 
 	return pad(hours);
 }
 
