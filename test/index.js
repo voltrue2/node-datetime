@@ -37,6 +37,60 @@ describe('Tests node-datetime', function () {
 		}, 1000);
 	});
 
+    it('Can format D 1st', function () {
+        var d = datetime.create('2018-01-01 00:00:00');
+        var f = d.format('D');
+        assert.equal(f, '1st');
+    });
+
+    it('Can format D 2nd', function () {
+        var d = datetime.create('2018-01-02 00:00:00');
+        var f = d.format('D');
+        assert.equal(f, '2nd');
+    });
+
+    it('Can format D 3rd', function () {
+        var d = datetime.create('2018-01-03 00:00:00');
+        var f = d.format('D');
+        assert.equal(f, '3rd');
+    });
+
+    it('Can format D 4th', function () {
+        var d = datetime.create('2018-01-04 00:00:00');
+        var f = d.format('D');
+        assert.equal(f, '4th');
+    });
+
+    it('Can format D 10th', function () {
+        var d = datetime.create('2018-01-10 00:00:00');
+        var f = d.format('D');
+        assert.equal(f, '10th');
+    });
+
+    it('Can format D 11th', function () {
+        var d = datetime.create('2018-01-11 00:00:00');
+        var f = d.format('D');
+        assert.equal(f, '11th');
+    });
+
+    it('Can format D 12th', function () {
+        var d = datetime.create('2018-01-12 00:00:00');
+        var f = d.format('D');
+        assert.equal(f, '12th');
+    });
+
+    it('Can format D 13th', function () {
+        var d = datetime.create('2018-01-13 00:00:00');
+        var f = d.format('D');
+        assert.equal(f, '13th');
+    });
+
+    it('Can format D 14th', function () {
+        var d = datetime.create('2018-01-14 00:00:00');
+        var f = d.format('D');
+        assert.equal(f, '14th');
+    });
+
 	it('Can format Y-m-d H:M:S.N', function () {
 		var d = datetime.create(time);
 		var f = d.format('Y-m-d H:M:S.N');

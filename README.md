@@ -230,6 +230,7 @@ console.log(formattedDate);
 |n|Shortened name of a month|
 |f|Full name of a month|
 |d|Date with leading 0|
+|D|Formatted date (1th, 2nd, 3rd, 4th...)|
 |H|Hours with leading 0 in 24 hours format|
 |I|Hours with leading 0 in 12 hours format|
 |M|Minutes with leading 0|

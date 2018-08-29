@@ -7,6 +7,7 @@ var FORMATS = {
 	n: getMonthName,
 	f: getMonthFullName,
 	d: getDay,
+    D: getFormattedDay,
 	H: getMilitaryHours,
 	I: getHours,
 	M: getMinutes,
@@ -261,6 +262,30 @@ function getMonthFullName(d) {
 
 function getDay(d) {
 	return pad(d.getDate());
+}
+
+function getFormattedDay(d) {
+    var _date = d.getDate();
+    if (_date > 10) {
+        return _date.toString() + 'th';
+    }
+    var date = _date.toString();
+    var lastDigit = parseInt(date[date.length - 1]);
+    switch (lastDigit) {
+        case 1:
+            lastDigit += 'st';
+            break;
+        case 2:
+            lastDigit += 'nd';
+            break;
+        case 3:
+            lastDigit += 'rd';
+            break;
+        default:
+            lastDigit += 'th';
+            break;
+    }
+    return date.substring(0, date.length - 1) + lastDigit;
 }
 
 function getMilitaryHours(d) {
