@@ -174,7 +174,9 @@ DateTime.prototype.offsetInHours = function (offset) {
 
 DateTime.prototype.getDatesInRange = function (dateObj) {
 
+    var defaultFormat = null;
 	if (dateObj instanceof DateTime) {
+        defaultFormat = dateObj._defaultFormat;
 		dateObj = dateObj._now;
 	}
 
@@ -185,11 +187,11 @@ DateTime.prototype.getDatesInRange = function (dateObj) {
 	var list = [];
 	var dir = (dateObj.getTime() >= this.getTime()) ? 1 : -1;
 	var diff = dateObj.getTime() - this.getTime() * dir;
-	var current = new DateTime(this._now);
+	var current = new DateTime(this._now, defaultFormat);
 	
 	while (diff > 0) {
 		list.push(current);
-		var next = new DateTime(current.getTime());
+		var next = new DateTime(current.getTime(), defaultFormat);
 		next.offsetInDays(1 * dir);	
 		current = next;
 		diff -= ONEDAY;
@@ -199,10 +201,13 @@ DateTime.prototype.getDatesInRange = function (dateObj) {
 };
 
 DateTime.prototype.getHoursInRange = function (dateObj) {
+    
+    var defaultFormat = null;
 
 	if (dateObj instanceof DateTime) {
+	    defaultFormat = dateObj._defaultFormat;
 		dateObj = dateObj._now;
-	}
+    }
 
 	if (this._now.getTime() >= dateObj.getTime()) {
 		throw new Error('start time cannot be greater than the end time');
@@ -211,11 +216,11 @@ DateTime.prototype.getHoursInRange = function (dateObj) {
 	var list = [];
 	var dir = (dateObj.getTime() >= this._now.getTime()) ? 1 : -1;
 	var diff = dateObj.getTime() - this._now.getTime() * dir;
-	var current = new DateTime(this._now);
+	var current = new DateTime(this._now, defaultFormat);
 	
 	while (diff > 0) {
 		list.push(current);
-		var next = new DateTime(current.getTime());
+		var next = new DateTime(current.getTime(), defaultFormat);
 		next.offsetInHours(1 * dir);	
 		current = next;
 		diff -= ONEHOUR;

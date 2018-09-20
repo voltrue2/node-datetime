@@ -161,15 +161,18 @@ describe('Tests node-datetime', function () {
 	});
 
 	it('Can get instances of DateTime object between 2015-04-12 and 2015-05-12', function () {
-		var start = datetime.create('2015-04-12');
-		var end = datetime.create('2015-05-12');
 		var format = 'Y-m-d H:M:S.N';
+		var start = datetime.create('2015-04-12', format);
+		var end = datetime.create('2015-05-12', format);
 		var list = start.getDatesInRange(end);
-		for (var i = 0, len = list.length; i < len; i++) {
+        for (var i = 0, len = list.length; i < len; i++) {
 			var day = list[i];
-			var check = datetime.create(start.getTime());
+			var check = datetime.create(start.getTime(), format);
 			check.offsetInDays(i);
-			assert.equal(day.format(format), check.format(format));
+            assert.equal(end._defaultFormat, format);
+            assert.equal(end._defaultFormat, check._defaultFormat);
+            assert.equal(check._defaultFormat, day._defaultFormat);
+			assert.equal(day.format(), check.format());
 		}
 	});
 
