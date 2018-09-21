@@ -176,10 +176,10 @@ DateTime.prototype.getDatesInRange = function (dateObj) {
 
     var start = this._now;
     var end = dateObj;
-    var defaultFormat = null;
+    var defaultFormat = this._defaultFormat;
 	
     if (dateObj instanceof DateTime) {
-        defaultFormat = dateObj._defaultFormat;
+        defaultFormat = defaultFormat || dateObj._defaultFormat;
 		end = dateObj._now;
 	}
 
@@ -187,14 +187,14 @@ DateTime.prototype.getDatesInRange = function (dateObj) {
 	var dir = (end.getTime() >= start.getTime()) ? 1 : -1;
 	var diff = (dir === 1) ? end.getTime() - start.getTime() : start.getTime() - end.getTime();
 	var current = new DateTime(start, defaultFormat);
+    var iteration = Math.ceil(diff / ONEDAY);
 
-	while (diff >= 0) {
+    for (var i = 0; i <= iteration; i++) {
 		list.push(current);
 		var next = new DateTime(current.getTime(), defaultFormat);
         next.offsetInDays(1 * dir);	
 		current = next;
-		diff -= ONEDAY;
-	}
+    }
 
 	return list;
 };
@@ -203,10 +203,10 @@ DateTime.prototype.getHoursInRange = function (dateObj) {
     
     var start = this._now;
     var end = dateObj;
-    var defaultFormat = null;
+    var defaultFormat = this._defaultFormat;
 
 	if (dateObj instanceof DateTime) {
-	    defaultFormat = dateObj._defaultFormat;
+	    defaultFormat = defaultFormat || this._defaultFormat;
 		end = dateObj._now;
     }
 
@@ -214,14 +214,14 @@ DateTime.prototype.getHoursInRange = function (dateObj) {
 	var dir = (end.getTime() >= start.getTime()) ? 1 : -1;
 	var diff = (dir === 1) ? end.getTime() - start.getTime() : start.getTime() - end.getTime();
 	var current = new DateTime(start, defaultFormat);
+    var iteration = Math.ceil(diff / ONEHOUR);
 	
-	while (diff > 0) {
-		list.push(current);
+    for (var i = 0; i <= iteration; i++) {
+        list.push(current);
 		var next = new DateTime(current.getTime(), defaultFormat);
 		next.offsetInHours(1 * dir);	
 		current = next;
-		diff -= ONEHOUR;
-	}
+    }
 
 	return list;
 };

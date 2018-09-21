@@ -193,28 +193,30 @@ describe('Tests node-datetime', function () {
 	});
 
 	it('can return a list of date time per hour between 2015-04-30 20:40:32.332 and 2015-05-01 17:05:10.223', function () {
-		var start = datetime.create('2015-04-30 20:40:32.332');
-		var end = datetime.create('2015-05-01 17:05:10.223');
 		var format = 'Y/m/d H:M:S.N';
+		var start = datetime.create('2015-04-30 20:40:32.332', format);
+		var end = datetime.create('2015-05-01 17:05:10.223', format);
 		var list = start.getHoursInRange(end);
 		for (var i = 0, len = list.length; i < len; i++) {
 			var hour = list[i];
-			var check = datetime.create(start.getTime());
+			var check = datetime.create(start.getTime(), format);
 			check.offsetInHours(i);
-			assert.equal(hour.format(format), check.format(format));
+			assert.equal(hour.format(), check.format());
 		}
 	});
 
 	it('can return a list of date time per hour between 2015-05-01 17:05:10.223 and 2015-04-30 20:40:32.332', function () {
-		var start = datetime.create('2015-05-01 17:05:10.223');
-		var end = datetime.create('2015-04-30 20:40:32.332');
 		var format = 'Y/m/d H:M:S.N';
+		var start = datetime.create('2015-05-01 17:05:10.223', format);
+		var end = datetime.create('2015-04-30 20:40:32.332', format);
 		var list = start.getHoursInRange(end).reverse();
-		for (var i = 0, len = list.length; i < len; i++) {
+        var offset = (list.length - 1) * -1;
+        for (var i = 0, len = list.length; i < len; i++) {
 			var hour = list[i];
-			var check = datetime.create(end.getTime());
-			check.offsetInHours(i);
-			assert.equal(hour.format(format), check.format(format));
+			var check = datetime.create(start.getTime(), format);
+			check.offsetInHours(offset);
+            offset += 1;
+			assert.equal(hour.format(), check.format());
 		}
 	});
 
