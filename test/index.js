@@ -176,6 +176,22 @@ describe('Tests node-datetime', function () {
 		}
 	});
 
+	it('Can get instances of DateTime object between 2015-05-12 and 2015-04-12', function () {
+		var format = 'Y-m-d H:M:S.N';
+		var start = datetime.create('2015-05-12', format);
+		var end = datetime.create('2015-04-12', format);
+		var list = start.getDatesInRange(end).reverse();
+        for (var i = 0, len = list.length; i < len; i++) {
+			var day = list[i];
+			var check = datetime.create(end.getTime(), format);
+			check.offsetInDays(i);
+            assert.equal(end._defaultFormat, format);
+            assert.equal(end._defaultFormat, check._defaultFormat);
+            assert.equal(check._defaultFormat, day._defaultFormat);
+            assert.equal(day.format(), check.format());
+		}
+	});
+
 	it('can return a list of date time per hour between 2015-04-30 20:40:32.332 and 2015-05-01 17:05:10.223', function () {
 		var start = datetime.create('2015-04-30 20:40:32.332');
 		var end = datetime.create('2015-05-01 17:05:10.223');
@@ -184,6 +200,19 @@ describe('Tests node-datetime', function () {
 		for (var i = 0, len = list.length; i < len; i++) {
 			var hour = list[i];
 			var check = datetime.create(start.getTime());
+			check.offsetInHours(i);
+			assert.equal(hour.format(format), check.format(format));
+		}
+	});
+
+	it('can return a list of date time per hour between 2015-05-01 17:05:10.223 and 2015-04-30 20:40:32.332', function () {
+		var start = datetime.create('2015-05-01 17:05:10.223');
+		var end = datetime.create('2015-04-30 20:40:32.332');
+		var format = 'Y/m/d H:M:S.N';
+		var list = start.getHoursInRange(end).reverse();
+		for (var i = 0, len = list.length; i < len; i++) {
+			var hour = list[i];
+			var check = datetime.create(end.getTime());
 			check.offsetInHours(i);
 			assert.equal(hour.format(format), check.format(format));
 		}

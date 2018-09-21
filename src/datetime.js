@@ -174,25 +174,24 @@ DateTime.prototype.offsetInHours = function (offset) {
 
 DateTime.prototype.getDatesInRange = function (dateObj) {
 
+    var start = this._now;
+    var end = dateObj;
     var defaultFormat = null;
-	if (dateObj instanceof DateTime) {
+	
+    if (dateObj instanceof DateTime) {
         defaultFormat = dateObj._defaultFormat;
-		dateObj = dateObj._now;
-	}
-
-	if (this.getTime() >= dateObj.getTime()) {
-		throw new Error('start time cannot be greater than the end time');
+		end = dateObj._now;
 	}
 
 	var list = [];
-	var dir = (dateObj.getTime() >= this.getTime()) ? 1 : -1;
-	var diff = dateObj.getTime() - this.getTime() * dir;
-	var current = new DateTime(this._now, defaultFormat);
-	
-	while (diff > 0) {
+	var dir = (end.getTime() >= start.getTime()) ? 1 : -1;
+	var diff = (dir === 1) ? end.getTime() - start.getTime() : start.getTime() - end.getTime();
+	var current = new DateTime(start, defaultFormat);
+
+	while (diff >= 0) {
 		list.push(current);
 		var next = new DateTime(current.getTime(), defaultFormat);
-		next.offsetInDays(1 * dir);	
+        next.offsetInDays(1 * dir);	
 		current = next;
 		diff -= ONEDAY;
 	}
@@ -202,21 +201,19 @@ DateTime.prototype.getDatesInRange = function (dateObj) {
 
 DateTime.prototype.getHoursInRange = function (dateObj) {
     
+    var start = this._now;
+    var end = dateObj;
     var defaultFormat = null;
 
 	if (dateObj instanceof DateTime) {
 	    defaultFormat = dateObj._defaultFormat;
-		dateObj = dateObj._now;
+		end = dateObj._now;
     }
 
-	if (this._now.getTime() >= dateObj.getTime()) {
-		throw new Error('start time cannot be greater than the end time');
-	}
-
 	var list = [];
-	var dir = (dateObj.getTime() >= this._now.getTime()) ? 1 : -1;
-	var diff = dateObj.getTime() - this._now.getTime() * dir;
-	var current = new DateTime(this._now, defaultFormat);
+	var dir = (end.getTime() >= start.getTime()) ? 1 : -1;
+	var diff = (dir === 1) ? end.getTime() - start.getTime() : start.getTime() - end.getTime();
+	var current = new DateTime(start, defaultFormat);
 	
 	while (diff > 0) {
 		list.push(current);
