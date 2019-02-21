@@ -14,7 +14,7 @@ An extended Date object for javascript.
 
 # Installation via npm
 
-`npm node-datetime`
+`npm install node-datetime`
 
 # Use node-datetime in browser
 
